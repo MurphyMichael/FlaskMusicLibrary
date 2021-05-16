@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+p.big {
+  line-height: 1.8;
+}
+{% block content %}
+<div class="media-body">
+  <div class="content-section">
+    <h2>{{username}}'s Playlists</h2>
+    {% if results %}
+      {% for result in results %}
+        <a href="{{url_for('ViewPlaylist', playlistID=result[3], name=result[0])}}" class="btn btn-light">{{ result[0] }}</a> <br>
+      {% endfor %}
+    {% else %}
+        <h1>No playlists</h1>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

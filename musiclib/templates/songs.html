@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+p.big {
+  line-height: 1.8;
+}
+{% block content %}
+
+    {% if results %}
+    <div class="media-body">
+        <div class="content-section">
+          <a href="{{url_for('PublicPlaylist', songID=songID)}}" class="btn btn-light" style="float: right;" >Add to Public Playlist</a>
+          <a href="{{url_for('PrivatePlaylist', songID=songID)}}" class="btn btn-light" style="float: right;">Add to Private Playlist</a>
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    Add {{ results[0] }} to your public or private playlist?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="{{url_for('PublicPlaylist', songID=songID)}}">Public Playlist</a></button>
+                    <button type="button" class="btn btn-secondary" href="">Private Playlist</button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+        <h2>{{ results[0] }}</h2>
+        
+        <small>Album: {{ results[3] }}</small><br>
+        <small>By: {{ results[4] }}</small><br>
+        <small>Genre: {{ results[1] }}</small><br>
+        <small>Length: {{(results[2]/60)|round(0,'floor')|int}}:{{results[2]%60}} minutes</small> 
+    {% endif %}
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+p.big {
+  line-height: 1.8;
+}
+{% block content %}
+<div class="media-body">
+  <div class="content-section">
+    <h2>Search Results</h2>
+    {% if results %}
+      {% for result in results %}
+        
+          <p class="big">
+            <div class="article-metadata">
+              {% if table  == "Artist" %}
+              <a class="mr-2" href="{{url_for('Artist', artistID=result[0])}}">{{ result[1] }}</a> <br>
+              {% elif table  == "Album" %}
+              <a class="mr-2" href="{{url_for('Album', albumID=result[0])}}">{{ result[1] }}</a> <br>
+              {% elif table  == "Songs" %}
+              <a class="mr-2" href="{{url_for('Song', songID=result[0])}}">{{ result[1] }}</a> <br>
+              {% elif table  == "User" %}
+              <a class="mr-2" href="{{url_for('UserPage', userID=result[0])}}">{{ result[1] }}</a> <br>
+              {% endif %}
+              
+            </div>
+          </p>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

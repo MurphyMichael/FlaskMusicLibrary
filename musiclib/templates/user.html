@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    Available Playlists<br>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                {{ form.playlistName.label(class="form-control-label") }}
+                {% if form.playlistName.errors %}
+                    {{ form.playlistName(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.playlistName.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.playlistName(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+    {% if results %}
+        {% for result in results %}
+            {% if reqtype == "Public"%}
+                <a href="{{url_for('AddPublicSong', songID=songID, playlist=result[0])}}" class="btn btn-light">{{ result[0] }}</a> <br>
+            {% elif reqtype == "Private"%}
+                <a href="{{url_for('AddPrivateSong', songID=songID, playlist=result[0])}}" class="btn btn-light">{{ result[0] }}</a> <br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

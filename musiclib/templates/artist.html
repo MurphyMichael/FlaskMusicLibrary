@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+p.big {
+  line-height: 1.8;
+}
+{% block content %}
+<div class="media-body">
+  <div class="content-section">
+    <h2>{{ artistname }}'s Albums</h2>
+    Genre: {{ genre }}
+    {% if results %}
+      {% for result in results %}
+        
+          <p class="big">
+            <div class="article-metadata">
+              <a class="mr-2" href="{{url_for('Album', albumID=result[0])}}">{{ result[1] }}</a> <br>
+            </div>
+          </p>
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}
